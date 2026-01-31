@@ -59,10 +59,9 @@ html, body {
 
 @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
 
-/* HERO TITLE FIX */
+/* HERO TITLE */
 .hero-title { 
   font-family: 'Syne', sans-serif; 
-  /* Ajustado para não ser tão gigante no PC e evitar quebras */
   font-size: clamp(3rem, 6vw, 7rem); 
   line-height: 0.9; 
   font-weight: 900; 
@@ -70,9 +69,6 @@ html, body {
   letter-spacing: -0.04em; 
   margin-bottom: 2rem; 
   color: #fff; 
-  /* No PC queremos normal, no mobile queremos break */
-  word-break: normal;
-  overflow-wrap: normal;
   max-width: 100%; 
   animation: float 6s ease-in-out infinite; 
 }
@@ -168,14 +164,13 @@ html, body {
 .pricing-container { max-width: 1200px; margin: 0 auto; }
 .pricing-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2rem; margin-bottom: 4rem; }
 
-/* CORREÇÃO DO TÍTULO "SELECT PROTOCOL" CORTADO */
+/* BIG HEADING */
 .big-heading { 
   font-family: 'Syne', sans-serif; 
   font-size: clamp(2.5rem, 5vw, 4rem); 
   font-weight: 900; 
   text-transform: uppercase; 
   line-height: 0.9; 
-  word-break: normal; /* Normal no PC */
 }
 
 .sub-heading { font-size: 0.7rem; color: #888; text-align: right; max-width: 150px; }
@@ -219,7 +214,7 @@ html, body {
 .footer-links a, .footer-links button { color: inherit; text-decoration: none; transition: 0.3s; }
 .footer-links a:hover, .footer-links button:hover { color: #fff; }
 
-/* --- MOBILE RESPONSIVE (CORREÇÕES EXTREMAS) --- */
+/* --- MOBILE RESPONSIVE (ESTRITAMENTE OTIMIZADO) --- */
 @media (max-width: 768px) {
   .app-container { display: flex; flex-direction: column; overflow-x: hidden; }
   .sidebar { position: relative; width: 100%; height: auto; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
@@ -231,11 +226,12 @@ html, body {
   .hero-section { padding: 4rem 1.5rem; min-height: 70vh; justify-content: flex-start; padding-top: 6rem; }
   .status-badge-container { flex-wrap: wrap; margin-top: 2rem; }
   .hero-title { 
-    font-size: 13vw !important; /* Tamanho baseado na largura do ecrã */
-    line-height: 0.85; 
-    margin-bottom: 3rem;
-    hyphens: auto;
-    word-break: break-word; /* Quebra apenas no mobile */
+    /* Reduzimos a fonte e tiramos a hifenização para não cortar */
+    font-size: 3.5rem !important; 
+    line-height: 1; 
+    margin-bottom: 2rem;
+    hyphens: none;
+    word-break: normal;
   }
   .hero-footer { flex-direction: column; align-items: flex-start; padding-left: 0; border-left: none; margin-left: 0; gap: 2rem; }
   
@@ -243,8 +239,11 @@ html, body {
   .workflow-section { padding: 4rem 1.5rem; }
   .workflow-grid { gap: 3rem; }
   
-  /* Catalog Fixes */
-  .inventory-header-container, .genre-selection-container { padding: 3rem 1.5rem; }
+  /* Catalog Fixes - Sound Palette sobreposto */
+  .inventory-header-container { padding: 3rem 1.5rem; }
+  /* Aqui está a correção: empilha os textos em mobile */
+  .inventory-title-block { flex-direction: column; align-items: flex-start; gap: 1rem; padding-bottom: 1.5rem; }
+  .genre-selection-container { padding: 0 1.5rem 3rem 1.5rem; }
   .grid-controls { padding: 1rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
   .beat-grid-header { display: none; }
   .beat-grid-row { grid-template-columns: 1fr auto; gap: 1rem; padding: 1.5rem 1rem; align-items: center; }
@@ -252,12 +251,13 @@ html, body {
   .col-title { grid-column: 1 / 2; font-size: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60vw; }
   .col-price { grid-column: 2 / 3; text-align: right; font-size: 1rem; }
   
-  /* Pricing Fixes */
+  /* Pricing Fixes - Título cortado */
   .pricing-section { padding: 4rem 1.5rem; }
   .pricing-header { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 3rem; }
   .big-heading { 
-    font-size: 2.5rem; 
-    word-break: break-word; /* Quebra Select Protocol se precisar */
+    font-size: 2.5rem !important; 
+    word-break: normal; 
+    hyphens: none;
   }
   .sub-heading { text-align: left; max-width: 100%; }
   

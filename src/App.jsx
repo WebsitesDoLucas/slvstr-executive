@@ -178,8 +178,15 @@ const ContactModal = ({ isOpen, onClose, selectedPlan }) => {
                     <label>YOUR EMAIL</label>
                     <input name="email" type="email" placeholder="CONTACT@YOU.COM" required />
                 </div>
+                
+                {/* --- LINK YOUTUBE ADICIONADO AQUI --- */}
                 <div className="form-group">
-                    <label>YOUTUBE LINKS (SELECT 2 BEATS)</label>
+                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                        <label>YOUTUBE LINKS (SELECT 2 BEATS)</label>
+                        <a href="https://www.youtube.com/@slvstr3586" target="_blank" rel="noopener noreferrer" style={{fontSize: '0.6rem', color: '#fff', textDecoration: 'underline'}}>
+                            BROWSE MY BEATS HERE ↗
+                        </a>
+                    </div>
                     <textarea 
                         name="beat_links" 
                         placeholder="Paste the links of the 2 beats from my channel you want to acquire." 
@@ -187,6 +194,7 @@ const ContactModal = ({ isOpen, onClose, selectedPlan }) => {
                         required
                     ></textarea>
                 </div>
+
                 <div className="checkbox-group" style={{marginTop: '0.5rem'}}>
                     <input type="checkbox" id="terms_access" required />
                     <label htmlFor="terms_access">I understand I will receive the files after payment verification.</label>
