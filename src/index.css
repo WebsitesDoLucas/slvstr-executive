@@ -18,7 +18,7 @@ html, body {
   font-family: 'JetBrains Mono', monospace;
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden; /* IMPORTANTE: Previne scroll lateral */
+  overflow-x: hidden; /* Previne scroll lateral geral */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -59,7 +59,7 @@ html, body {
 
 @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
 
-/* HERO TITLE */
+/* HERO TITLE (PC) */
 .hero-title { 
   font-family: 'Syne', sans-serif; 
   font-size: clamp(3rem, 6vw, 7rem); 
@@ -69,6 +69,7 @@ html, body {
   letter-spacing: -0.04em; 
   margin-bottom: 2rem; 
   color: #fff; 
+  word-break: normal;
   max-width: 100%; 
   animation: float 6s ease-in-out infinite; 
 }
@@ -164,13 +165,14 @@ html, body {
 .pricing-container { max-width: 1200px; margin: 0 auto; }
 .pricing-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2rem; margin-bottom: 4rem; }
 
-/* BIG HEADING */
+/* BIG HEADING (PC) */
 .big-heading { 
   font-family: 'Syne', sans-serif; 
   font-size: clamp(2.5rem, 5vw, 4rem); 
   font-weight: 900; 
   text-transform: uppercase; 
   line-height: 0.9; 
+  word-break: normal;
 }
 
 .sub-heading { font-size: 0.7rem; color: #888; text-align: right; max-width: 150px; }
@@ -222,14 +224,14 @@ html, body {
   .nav-menu, .sidebar-bottom { display: none; }
   .logo-container { margin-bottom: 0; justify-content: center; width: 100%; padding: 1rem; }
   
-  /* Hero Fixes - OTIMIZADO PARA NÃO CORTAR */
+  /* Hero Fixes */
   .hero-section { padding: 4rem 2rem; min-height: 70vh; justify-content: flex-start; padding-top: 6rem; }
   .status-badge-container { flex-wrap: wrap; margin-top: 2rem; }
   .hero-title { 
-    /* Tamanho baseado na largura do ecrã (vw) para caber sempre */
+    /* AJUSTE: 11vw para caber na horizontal, line-height 1.1 para não cortar em baixo */
     font-size: 11vw !important; 
     line-height: 1.1; 
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     hyphens: none;
     word-break: normal;
   }
@@ -239,10 +241,11 @@ html, body {
   .workflow-section { padding: 4rem 2rem; }
   .workflow-grid { gap: 3rem; }
   
-  /* Catalog Fixes */
+  /* Catalog Fixes - Sound Palette sobreposto */
   .inventory-header-container { padding: 3rem 2rem; }
-  /* Empilha o título e a data para não ficarem pegados */
+  /* AJUSTE: Empilha o texto para dar espaço */
   .inventory-title-block { flex-direction: column; align-items: flex-start; gap: 1rem; padding-bottom: 1.5rem; }
+  .entry-count { margin-top: 0.5rem; display: block; }
   .genre-selection-container { padding: 0 2rem 3rem 2rem; }
   .grid-controls { padding: 1rem 2rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
   .beat-grid-header { display: none; }
@@ -254,10 +257,12 @@ html, body {
   /* Pricing Fixes */
   .pricing-section { padding: 4rem 2rem; }
   .pricing-header { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 3rem; }
+  /* AJUSTE: Tamanho seguro para "SELECT PROTOCOL" */
   .big-heading { 
-    font-size: 10vw !important; /* Tamanho baseado em vw */
+    font-size: 9.5vw !important; 
     word-break: normal; 
     hyphens: none;
+    line-height: 1.1;
   }
   .sub-heading { text-align: left; max-width: 100%; }
   
