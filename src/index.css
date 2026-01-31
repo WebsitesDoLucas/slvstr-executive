@@ -18,7 +18,7 @@ html, body {
   font-family: 'JetBrains Mono', monospace;
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden; /* Previne scroll lateral geral */
+  overflow-x: hidden; /* IMPORTANTE: Previne scroll lateral */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -165,14 +165,13 @@ html, body {
 .pricing-container { max-width: 1200px; margin: 0 auto; }
 .pricing-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2rem; margin-bottom: 4rem; }
 
-/* BIG HEADING (PC) */
+/* BIG HEADING */
 .big-heading { 
   font-family: 'Syne', sans-serif; 
   font-size: clamp(2.5rem, 5vw, 4rem); 
   font-weight: 900; 
   text-transform: uppercase; 
   line-height: 0.9; 
-  word-break: normal;
 }
 
 .sub-heading { font-size: 0.7rem; color: #888; text-align: right; max-width: 150px; }
@@ -224,12 +223,12 @@ html, body {
   .nav-menu, .sidebar-bottom { display: none; }
   .logo-container { margin-bottom: 0; justify-content: center; width: 100%; padding: 1rem; }
   
-  /* Hero Fixes */
+  /* Hero Fixes - OTIMIZADO PARA NÃO CORTAR "G" */
   .hero-section { padding: 4rem 2rem; min-height: 70vh; justify-content: flex-start; padding-top: 6rem; }
   .status-badge-container { flex-wrap: wrap; margin-top: 2rem; }
   .hero-title { 
-    /* AJUSTE: 11vw para caber na horizontal, line-height 1.1 para não cortar em baixo */
-    font-size: 11vw !important; 
+    /* Reduzido para 9.5vw para garantir que cabe com segurança */
+    font-size: 9.5vw !important; 
     line-height: 1.1; 
     margin-bottom: 3rem;
     hyphens: none;
