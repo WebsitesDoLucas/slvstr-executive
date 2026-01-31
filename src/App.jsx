@@ -107,7 +107,6 @@ const containerVars = { hidden: { opacity: 0 }, show: { opacity: 1, transition: 
 const itemVars = { hidden: { y: 20, opacity: 0 }, show: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } } };
 
 // --- FORMULÁRIO (MODAL) ---
-// --- FORMULÁRIO (MODAL) OTIMIZADO PARA VISÃO EXECUTIVA ---
 const ContactModal = ({ isOpen, onClose, selectedPlan }) => {
   const [isCommitted, setIsCommitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -279,7 +278,7 @@ const ContactModal = ({ isOpen, onClose, selectedPlan }) => {
     </div>
   );
 };
-// --- MANTIVE OS TEUS TEXTOS ORIGINAIS ---
+
 const WorkflowSection = () => {
   const steps = [
     { num: "01", title: "// BRIEF", desc: "Send me the vision. Don't just pick a random beat. Send me a reference track or a voice memo. I analyze the vibe you want to capture." },
@@ -375,12 +374,21 @@ export default function App() {
     setTimeout(() => setIsEmailCopied(false), 2000);
   };
 
+  // FUNÇÃO DE CORREÇÃO DO SIDEBAR (NAVEGAÇÃO MANUAL)
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const selectGenre = (genre) => { setActiveFilter(genre); setViewMode('GRID'); setTimeout(() => { document.getElementById('inventory-list-anchor')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100); };
   const backToSelection = () => { setViewMode('SELECTION'); setActiveFilter(null); };
   const { scrollYProgress } = useScroll();
   const yHero = useTransform(scrollYProgress, [0, 1], [0, 300]);
 
-  // --- DADOS COMPLETOS (50 BEATS) - MANTIVE OS TEUS ---
+  // --- DADOS COMPLETOS (50 BEATS) ---
   const allBeats = [
     // AFROBEAT
     { id: 1, title: "GOLD_DUST", bpm: 93, key: "Am", tag: "AFRO", price: 49, audio: "/beats/afrobeat1.mp3" },
@@ -447,7 +455,6 @@ export default function App() {
   const genres = ['AFRO', 'BOOMBAP', 'FUNK', 'DRILL', 'ELECTRO', 'EXPERIMENTAL', 'JERK', 'REGGAETON', 'RNB', 'TRAP'];
   const filteredBeats = activeFilter ? allBeats.filter(beat => beat.tag === activeFilter) : [];
 
-  // --- MANTIVE OS TEUS TEXTOS ORIGINAIS ---
   const plans = [
     { 
         name: "ACCESS", 
@@ -479,7 +486,6 @@ export default function App() {
     }
   ];
 
-  // --- MANTIVE OS TEUS TEXTOS ORIGINAIS (COM A FAQ NOVA) ---
   const faqs = [
     { 
       q: "WHY NOT JUST DOWNLOAD A 'TYPE BEAT' FROM YOUTUBE?", 
@@ -497,11 +503,18 @@ export default function App() {
       q: "I HAVE ZERO MONTHLY LISTENERS. IS THIS FOR ME?", 
       a: "This is EXACTLY for you. You don't grow a fanbase by releasing amateur demos recorded in your bedroom. You grow by releasing professional-quality music consistently. I provide the quality; you provide the consistency." 
     },
-    // --- FAQ NOVA PEDIDA ---
     {
       q: "CAN I CUSTOMIZE A PLAN?",
       a: "Yes. If you have a specific request, contact me directly. We can adjust the protocol to fit your project's needs."
     }
+  ];
+
+  // --- MAPA DE NAVEGAÇÃO: NOME BONITO -> ID DA SECÇÃO ---
+  const menuItems = [
+    { label: 'SOUND_PALETTE', id: 'inventory' },
+    { label: 'PRODUCTION_CYCLE', id: 'workflow' },
+    { label: 'SELECT_PROTOCOL', id: 'infrastructure' },
+    { label: 'COMMON_QUESTIONS', id: 'knowledge' }
   ];
 
   return (
@@ -525,8 +538,15 @@ export default function App() {
             <span className="logo-text">SLVSTR®</span>
           </div>
           <nav className="nav-menu">
-            {['SOUND_PALETTE', 'PRODUCTION_CYCLE', 'SELECT_PROTOCOL', 'COMMON_QUESTIONS'].map((item, i) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="nav-item"><span className="nav-link"><span className="arrow">→</span>[0{i+1}] {item}</span></a>
+            {menuItems.map((item, i) => (
+              <a 
+                key={item.label} 
+                onClick={(e) => scrollToSection(e, item.id)} 
+                className="nav-item"
+                style={{cursor: 'pointer'}} // Garante que o rato aparece como mãozinha
+              >
+                <span className="nav-link"><span className="arrow">→</span>[0{i+1}] {item.label}</span>
+              </a>
             ))}
           </nav>
         </div>

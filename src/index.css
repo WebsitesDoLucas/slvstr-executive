@@ -18,7 +18,7 @@ html, body {
   font-family: 'JetBrains Mono', monospace;
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden; /* Impede scroll lateral */
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -39,7 +39,7 @@ html, body {
 .logo-dot { width: 4px; height: 4px; background: #fff; border-radius: 50%; }
 .logo-text { font-family: 'FluxDemo', sans-serif; font-weight: 400; font-size: 1.5rem; letter-spacing: 0.05em; text-transform: uppercase; }
 .nav-menu { display: flex; flex-direction: column; }
-.nav-item { display: block; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); text-decoration: none; }
+.nav-item { display: block; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); text-decoration: none; cursor: pointer; }
 .nav-link { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.2em; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; }
 .nav-item:hover .nav-link { color: #fff; }
 .arrow { opacity: 0; transition: opacity 0.3s; color: #fff; }
@@ -62,14 +62,17 @@ html, body {
 /* HERO TITLE FIX */
 .hero-title { 
   font-family: 'Syne', sans-serif; 
-  font-size: clamp(3.5rem, 6vw, 8rem); 
+  /* Ajustado para não ser tão gigante no PC e evitar quebras */
+  font-size: clamp(3rem, 6vw, 7rem); 
   line-height: 0.9; 
   font-weight: 900; 
   text-transform: uppercase; 
   letter-spacing: -0.04em; 
   margin-bottom: 2rem; 
   color: #fff; 
-  overflow-wrap: break-word; 
+  /* No PC queremos normal, no mobile queremos break */
+  word-break: normal;
+  overflow-wrap: normal;
   max-width: 100%; 
   animation: float 6s ease-in-out infinite; 
 }
@@ -172,7 +175,7 @@ html, body {
   font-weight: 900; 
   text-transform: uppercase; 
   line-height: 0.9; 
-  word-break: break-word; /* Evita corte */
+  word-break: normal; /* Normal no PC */
 }
 
 .sub-heading { font-size: 0.7rem; color: #888; text-align: right; max-width: 150px; }
@@ -232,6 +235,7 @@ html, body {
     line-height: 0.85; 
     margin-bottom: 3rem;
     hyphens: auto;
+    word-break: break-word; /* Quebra apenas no mobile */
   }
   .hero-footer { flex-direction: column; align-items: flex-start; padding-left: 0; border-left: none; margin-left: 0; gap: 2rem; }
   
@@ -251,6 +255,10 @@ html, body {
   /* Pricing Fixes */
   .pricing-section { padding: 4rem 1.5rem; }
   .pricing-header { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 3rem; }
+  .big-heading { 
+    font-size: 2.5rem; 
+    word-break: break-word; /* Quebra Select Protocol se precisar */
+  }
   .sub-heading { text-align: left; max-width: 100%; }
   
   /* FAQ Fixes */
